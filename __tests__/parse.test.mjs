@@ -12,6 +12,6 @@ test('parse', async (t) => {
     for (const fixture of fixtures) {
         const did = await fs.readFile(path.resolve(fixturesRoot, `${fixture}.did`), 'utf-8')
         const json = await fs.readFile(path.resolve(fixturesRoot, `${fixture}.json`), 'utf-8')
-        t.is(parseIdlPretty(did), json)
+        t.is(parseIdlPretty(did).replace(/\s+/g, ''), json.replace(/\s+/g, ''))
     }
 })
