@@ -1,6 +1,6 @@
 {
   "name": "@tookey-io/candid-parser",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": "https://github.com/tookey-io/candid-parser",
