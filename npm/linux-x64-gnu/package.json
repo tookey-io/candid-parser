@@ -1,6 +1,7 @@
 {
   "name": "@tookey-io/candid-parser-linux-x64-gnu",
-  "version": "0.0.5",
+  "repository": "https://github.com/tookey-io/candid-parser",
+  "version": "0.0.6",
   "os": [
     "linux"
   ],
