@@ -1,0 +1,1452 @@
+{
+    "Account": {
+      "record": [
+        {
+          "id": "owner",
+          "ty": "principal"
+        },
+        {
+          "id": "subaccount",
+          "ty": {
+            "opt": {
+              "vec": "nat8"
+            }
+          }
+        }
+      ]
+    },
+    "AccountBalanceArgs": {
+      "record": [
+        {
+          "id": "account",
+          "ty": "text"
+        }
+      ]
+    },
+    "ArchiveInfo": {
+      "record": [
+        {
+          "id": "canister_id",
+          "ty": "principal"
+        }
+      ]
+    },
+    "ArchiveOptions": {
+      "record": [
+        {
+          "id": "num_blocks_to_archive",
+          "ty": "nat64"
+        },
+        {
+          "id": "max_transactions_per_response",
+          "ty": {
+            "opt": "nat64"
+          }
+        },
+        {
+          "id": "trigger_threshold",
+          "ty": "nat64"
+        },
+        {
+          "id": "max_message_size_bytes",
+          "ty": {
+            "opt": "nat64"
+          }
+        },
+        {
+          "id": "cycles_for_archive_creation",
+          "ty": {
+            "opt": "nat64"
+          }
+        },
+        {
+          "id": "node_max_memory_size_bytes",
+          "ty": {
+            "opt": "nat64"
+          }
+        },
+        {
+          "id": "controller_id",
+          "ty": "principal"
+        }
+      ]
+    },
+    "ArchivedBlocksRange": {
+      "record": [
+        {
+          "id": "callback",
+          "ty": {
+            "func": {
+              "modes": [
+                {
+                  "kind": "query"
+                }
+              ],
+              "args": [
+                {
+                  "var": "GetBlocksArgs"
+                }
+              ],
+              "rets": [
+                {
+                  "variant": [
+                    {
+                      "id": "Ok",
+                      "ty": {
+                        "var": "BlockRange"
+                      }
+                    },
+                    {
+                      "id": "Err",
+                      "ty": {
+                        "var": "GetBlocksError"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "start",
+          "ty": "nat64"
+        },
+        {
+          "id": "length",
+          "ty": "nat64"
+        }
+      ]
+    },
+    "ArchivedEncodedBlocksRange": {
+      "record": [
+        {
+          "id": "callback",
+          "ty": {
+            "func": {
+              "modes": [
+                {
+                  "kind": "query"
+                }
+              ],
+              "args": [
+                {
+                  "var": "GetBlocksArgs"
+                }
+              ],
+              "rets": [
+                {
+                  "variant": [
+                    {
+                      "id": "Ok",
+                      "ty": {
+                        "vec": {
+                          "vec": "nat8"
+                        }
+                      }
+                    },
+                    {
+                      "id": "Err",
+                      "ty": {
+                        "var": "GetBlocksError"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "start",
+          "ty": "nat64"
+        },
+        {
+          "id": "length",
+          "ty": "nat64"
+        }
+      ]
+    },
+    "Archives": {
+      "record": [
+        {
+          "id": "archives",
+          "ty": {
+            "vec": {
+              "var": "ArchiveInfo"
+            }
+          }
+        }
+      ]
+    },
+    "BinaryAccountBalanceArgs": {
+      "record": [
+        {
+          "id": "account",
+          "ty": {
+            "vec": "nat8"
+          }
+        }
+      ]
+    },
+    "BlockRange": {
+      "record": [
+        {
+          "id": "blocks",
+          "ty": {
+            "vec": {
+              "var": "CandidBlock"
+            }
+          }
+        }
+      ]
+    },
+    "CandidBlock": {
+      "record": [
+        {
+          "id": "transaction",
+          "ty": {
+            "var": "CandidTransaction"
+          }
+        },
+        {
+          "id": "timestamp",
+          "ty": {
+            "var": "TimeStamp"
+          }
+        },
+        {
+          "id": "parent_hash",
+          "ty": {
+            "opt": {
+              "vec": "nat8"
+            }
+          }
+        }
+      ]
+    },
+    "CandidOperation": {
+      "variant": [
+        {
+          "id": "Approve",
+          "ty": {
+            "record": [
+              {
+                "id": "fee",
+                "ty": {
+                  "var": "Tokens"
+                }
+              },
+              {
+                "id": "from",
+                "ty": {
+                  "vec": "nat8"
+                }
+              },
+              {
+                "id": "allowance_e8s",
+                "ty": "int"
+              },
+              {
+                "id": "allowance",
+                "ty": {
+                  "var": "Tokens"
+                }
+              },
+              {
+                "id": "expires_at",
+                "ty": {
+                  "opt": {
+                    "var": "TimeStamp"
+                  }
+                }
+              },
+              {
+                "id": "spender",
+                "ty": {
+                  "vec": "nat8"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "Burn",
+          "ty": {
+            "record": [
+              {
+                "id": "from",
+                "ty": {
+                  "vec": "nat8"
+                }
+              },
+              {
+                "id": "amount",
+                "ty": {
+                  "var": "Tokens"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "Mint",
+          "ty": {
+            "record": [
+              {
+                "id": "to",
+                "ty": {
+                  "vec": "nat8"
+                }
+              },
+              {
+                "id": "amount",
+                "ty": {
+                  "var": "Tokens"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "Transfer",
+          "ty": {
+            "record": [
+              {
+                "id": "to",
+                "ty": {
+                  "vec": "nat8"
+                }
+              },
+              {
+                "id": "fee",
+                "ty": {
+                  "var": "Tokens"
+                }
+              },
+              {
+                "id": "from",
+                "ty": {
+                  "vec": "nat8"
+                }
+              },
+              {
+                "id": "amount",
+                "ty": {
+                  "var": "Tokens"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "TransferFrom",
+          "ty": {
+            "record": [
+              {
+                "id": "to",
+                "ty": {
+                  "vec": "nat8"
+                }
+              },
+              {
+                "id": "fee",
+                "ty": {
+                  "var": "Tokens"
+                }
+              },
+              {
+                "id": "from",
+                "ty": {
+                  "vec": "nat8"
+                }
+              },
+              {
+                "id": "amount",
+                "ty": {
+                  "var": "Tokens"
+                }
+              },
+              {
+                "id": "spender",
+                "ty": {
+                  "vec": "nat8"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "CandidTransaction": {
+      "record": [
+        {
+          "id": "memo",
+          "ty": "nat64"
+        },
+        {
+          "id": "icrc1_memo",
+          "ty": {
+            "opt": {
+              "vec": "nat8"
+            }
+          }
+        },
+        {
+          "id": "operation",
+          "ty": {
+            "opt": {
+              "var": "CandidOperation"
+            }
+          }
+        },
+        {
+          "id": "created_at_time",
+          "ty": {
+            "var": "TimeStamp"
+          }
+        }
+      ]
+    },
+    "Decimals": {
+      "record": [
+        {
+          "id": "decimals",
+          "ty": "nat32"
+        }
+      ]
+    },
+    "Duration": {
+      "record": [
+        {
+          "id": "secs",
+          "ty": "nat64"
+        },
+        {
+          "id": "nanos",
+          "ty": "nat32"
+        }
+      ]
+    },
+    "GetBlocksArgs": {
+      "record": [
+        {
+          "id": "start",
+          "ty": "nat64"
+        },
+        {
+          "id": "length",
+          "ty": "nat64"
+        }
+      ]
+    },
+    "GetBlocksError": {
+      "variant": [
+        {
+          "id": "BadFirstBlockIndex",
+          "ty": {
+            "record": [
+              {
+                "id": "requested_index",
+                "ty": "nat64"
+              },
+              {
+                "id": "first_valid_index",
+                "ty": "nat64"
+              }
+            ]
+          }
+        },
+        {
+          "id": "Other",
+          "ty": {
+            "record": [
+              {
+                "id": "error_message",
+                "ty": "text"
+              },
+              {
+                "id": "error_code",
+                "ty": "nat64"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "InitArgs": {
+      "record": [
+        {
+          "id": "send_whitelist",
+          "ty": {
+            "vec": "principal"
+          }
+        },
+        {
+          "id": "token_symbol",
+          "ty": {
+            "opt": "text"
+          }
+        },
+        {
+          "id": "transfer_fee",
+          "ty": {
+            "opt": {
+              "var": "Tokens"
+            }
+          }
+        },
+        {
+          "id": "minting_account",
+          "ty": "text"
+        },
+        {
+          "id": "transaction_window",
+          "ty": {
+            "opt": {
+              "var": "Duration"
+            }
+          }
+        },
+        {
+          "id": "max_message_size_bytes",
+          "ty": {
+            "opt": "nat64"
+          }
+        },
+        {
+          "id": "icrc1_minting_account",
+          "ty": {
+            "opt": {
+              "var": "Account"
+            }
+          }
+        },
+        {
+          "id": "archive_options",
+          "ty": {
+            "opt": {
+              "var": "ArchiveOptions"
+            }
+          }
+        },
+        {
+          "id": "initial_values",
+          "ty": {
+            "vec": {
+              "record": [
+                {
+                  "id": 0,
+                  "ty": "text"
+                },
+                {
+                  "id": 1,
+                  "ty": {
+                    "var": "Tokens"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "token_name",
+          "ty": {
+            "opt": "text"
+          }
+        }
+      ]
+    },
+    "LedgerCanisterPayload": {
+      "variant": [
+        {
+          "id": "Upgrade",
+          "ty": {
+            "opt": {
+              "var": "UpgradeArgs"
+            }
+          }
+        },
+        {
+          "id": "Init",
+          "ty": {
+            "var": "InitArgs"
+          }
+        }
+      ]
+    },
+    "MetadataValue": {
+      "variant": [
+        {
+          "id": "Int",
+          "ty": "int"
+        },
+        {
+          "id": "Nat",
+          "ty": "nat"
+        },
+        {
+          "id": "Blob",
+          "ty": {
+            "vec": "nat8"
+          }
+        },
+        {
+          "id": "Text",
+          "ty": "text"
+        }
+      ]
+    },
+    "Name": {
+      "record": [
+        {
+          "id": "name",
+          "ty": "text"
+        }
+      ]
+    },
+    "QueryBlocksResponse": {
+      "record": [
+        {
+          "id": "certificate",
+          "ty": {
+            "opt": {
+              "vec": "nat8"
+            }
+          }
+        },
+        {
+          "id": "blocks",
+          "ty": {
+            "vec": {
+              "var": "CandidBlock"
+            }
+          }
+        },
+        {
+          "id": "chain_length",
+          "ty": "nat64"
+        },
+        {
+          "id": "first_block_index",
+          "ty": "nat64"
+        },
+        {
+          "id": "archived_blocks",
+          "ty": {
+            "vec": {
+              "var": "ArchivedBlocksRange"
+            }
+          }
+        }
+      ]
+    },
+    "QueryEncodedBlocksResponse": {
+      "record": [
+        {
+          "id": "certificate",
+          "ty": {
+            "opt": {
+              "vec": "nat8"
+            }
+          }
+        },
+        {
+          "id": "blocks",
+          "ty": {
+            "vec": {
+              "vec": "nat8"
+            }
+          }
+        },
+        {
+          "id": "chain_length",
+          "ty": "nat64"
+        },
+        {
+          "id": "first_block_index",
+          "ty": "nat64"
+        },
+        {
+          "id": "archived_blocks",
+          "ty": {
+            "vec": {
+              "var": "ArchivedEncodedBlocksRange"
+            }
+          }
+        }
+      ]
+    },
+    "Result": {
+      "variant": [
+        {
+          "id": "Ok",
+          "ty": "nat"
+        },
+        {
+          "id": "Err",
+          "ty": {
+            "var": "TransferError"
+          }
+        }
+      ]
+    },
+    "Result_1": {
+      "variant": [
+        {
+          "id": "Ok",
+          "ty": "nat64"
+        },
+        {
+          "id": "Err",
+          "ty": {
+            "var": "TransferError_1"
+          }
+        }
+      ]
+    },
+    "SendArgs": {
+      "record": [
+        {
+          "id": "to",
+          "ty": "text"
+        },
+        {
+          "id": "fee",
+          "ty": {
+            "var": "Tokens"
+          }
+        },
+        {
+          "id": "memo",
+          "ty": "nat64"
+        },
+        {
+          "id": "from_subaccount",
+          "ty": {
+            "opt": {
+              "vec": "nat8"
+            }
+          }
+        },
+        {
+          "id": "created_at_time",
+          "ty": {
+            "opt": {
+              "var": "TimeStamp"
+            }
+          }
+        },
+        {
+          "id": "amount",
+          "ty": {
+            "var": "Tokens"
+          }
+        }
+      ]
+    },
+    "Service": {
+      "class": [
+        [
+          {
+            "var": "LedgerCanisterPayload"
+          }
+        ],
+        {
+          "service": [
+            [
+              "account_balance",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [
+                    {
+                      "var": "BinaryAccountBalanceArgs"
+                    }
+                  ],
+                  "rets": [
+                    {
+                      "var": "Tokens"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "account_balance_dfx",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [
+                    {
+                      "var": "AccountBalanceArgs"
+                    }
+                  ],
+                  "rets": [
+                    {
+                      "var": "Tokens"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "archives",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    {
+                      "var": "Archives"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "decimals",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    {
+                      "var": "Decimals"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_balance_of",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [
+                    {
+                      "var": "Account"
+                    }
+                  ],
+                  "rets": [
+                    "nat"
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_decimals",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    "nat8"
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_fee",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    "nat"
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_metadata",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    {
+                      "vec": {
+                        "record": [
+                          {
+                            "id": 0,
+                            "ty": "text"
+                          },
+                          {
+                            "id": 1,
+                            "ty": {
+                              "var": "MetadataValue"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_minting_account",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    {
+                      "opt": {
+                        "var": "Account"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_name",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    "text"
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_supported_standards",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    {
+                      "vec": {
+                        "var": "StandardRecord"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_symbol",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    "text"
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_total_supply",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    "nat"
+                  ]
+                }
+              }
+            ],
+            [
+              "icrc1_transfer",
+              {
+                "func": {
+                  "modes": [],
+                  "args": [
+                    {
+                      "var": "TransferArg"
+                    }
+                  ],
+                  "rets": [
+                    {
+                      "var": "Result"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "name",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    {
+                      "var": "Name"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "query_blocks",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [
+                    {
+                      "var": "GetBlocksArgs"
+                    }
+                  ],
+                  "rets": [
+                    {
+                      "var": "QueryBlocksResponse"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "query_encoded_blocks",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [
+                    {
+                      "var": "GetBlocksArgs"
+                    }
+                  ],
+                  "rets": [
+                    {
+                      "var": "QueryEncodedBlocksResponse"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "send_dfx",
+              {
+                "func": {
+                  "modes": [],
+                  "args": [
+                    {
+                      "var": "SendArgs"
+                    }
+                  ],
+                  "rets": [
+                    "nat64"
+                  ]
+                }
+              }
+            ],
+            [
+              "symbol",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [],
+                  "rets": [
+                    {
+                      "var": "Symbol"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "transfer",
+              {
+                "func": {
+                  "modes": [],
+                  "args": [
+                    {
+                      "var": "TransferArgs"
+                    }
+                  ],
+                  "rets": [
+                    {
+                      "var": "Result_1"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              "transfer_fee",
+              {
+                "func": {
+                  "modes": [
+                    {
+                      "kind": "query"
+                    }
+                  ],
+                  "args": [
+                    {
+                      "record": []
+                    }
+                  ],
+                  "rets": [
+                    {
+                      "var": "TransferFee"
+                    }
+                  ]
+                }
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "StandardRecord": {
+      "record": [
+        {
+          "id": "url",
+          "ty": "text"
+        },
+        {
+          "id": "name",
+          "ty": "text"
+        }
+      ]
+    },
+    "Symbol": {
+      "record": [
+        {
+          "id": "symbol",
+          "ty": "text"
+        }
+      ]
+    },
+    "TimeStamp": {
+      "record": [
+        {
+          "id": "timestamp_nanos",
+          "ty": "nat64"
+        }
+      ]
+    },
+    "Tokens": {
+      "record": [
+        {
+          "id": "e8s",
+          "ty": "nat64"
+        }
+      ]
+    },
+    "TransferArg": {
+      "record": [
+        {
+          "id": "to",
+          "ty": {
+            "var": "Account"
+          }
+        },
+        {
+          "id": "fee",
+          "ty": {
+            "opt": "nat"
+          }
+        },
+        {
+          "id": "memo",
+          "ty": {
+            "opt": {
+              "vec": "nat8"
+            }
+          }
+        },
+        {
+          "id": "from_subaccount",
+          "ty": {
+            "opt": {
+              "vec": "nat8"
+            }
+          }
+        },
+        {
+          "id": "created_at_time",
+          "ty": {
+            "opt": "nat64"
+          }
+        },
+        {
+          "id": "amount",
+          "ty": "nat"
+        }
+      ]
+    },
+    "TransferArgs": {
+      "record": [
+        {
+          "id": "to",
+          "ty": {
+            "vec": "nat8"
+          }
+        },
+        {
+          "id": "fee",
+          "ty": {
+            "var": "Tokens"
+          }
+        },
+        {
+          "id": "memo",
+          "ty": "nat64"
+        },
+        {
+          "id": "from_subaccount",
+          "ty": {
+            "opt": {
+              "vec": "nat8"
+            }
+          }
+        },
+        {
+          "id": "created_at_time",
+          "ty": {
+            "opt": {
+              "var": "TimeStamp"
+            }
+          }
+        },
+        {
+          "id": "amount",
+          "ty": {
+            "var": "Tokens"
+          }
+        }
+      ]
+    },
+    "TransferError": {
+      "variant": [
+        {
+          "id": "GenericError",
+          "ty": {
+            "record": [
+              {
+                "id": "message",
+                "ty": "text"
+              },
+              {
+                "id": "error_code",
+                "ty": "nat"
+              }
+            ]
+          }
+        },
+        {
+          "id": "TemporarilyUnavailable",
+          "ty": "null"
+        },
+        {
+          "id": "BadBurn",
+          "ty": {
+            "record": [
+              {
+                "id": "min_burn_amount",
+                "ty": "nat"
+              }
+            ]
+          }
+        },
+        {
+          "id": "Duplicate",
+          "ty": {
+            "record": [
+              {
+                "id": "duplicate_of",
+                "ty": "nat"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BadFee",
+          "ty": {
+            "record": [
+              {
+                "id": "expected_fee",
+                "ty": "nat"
+              }
+            ]
+          }
+        },
+        {
+          "id": "CreatedInFuture",
+          "ty": {
+            "record": [
+              {
+                "id": "ledger_time",
+                "ty": "nat64"
+              }
+            ]
+          }
+        },
+        {
+          "id": "TooOld",
+          "ty": "null"
+        },
+        {
+          "id": "InsufficientFunds",
+          "ty": {
+            "record": [
+              {
+                "id": "balance",
+                "ty": "nat"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "TransferError_1": {
+      "variant": [
+        {
+          "id": "TxTooOld",
+          "ty": {
+            "record": [
+              {
+                "id": "allowed_window_nanos",
+                "ty": "nat64"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BadFee",
+          "ty": {
+            "record": [
+              {
+                "id": "expected_fee",
+                "ty": {
+                  "var": "Tokens"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "TxDuplicate",
+          "ty": {
+            "record": [
+              {
+                "id": "duplicate_of",
+                "ty": "nat64"
+              }
+            ]
+          }
+        },
+        {
+          "id": "TxCreatedInFuture",
+          "ty": "null"
+        },
+        {
+          "id": "InsufficientFunds",
+          "ty": {
+            "record": [
+              {
+                "id": "balance",
+                "ty": {
+                  "var": "Tokens"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "TransferFee": {
+      "record": [
+        {
+          "id": "transfer_fee",
+          "ty": {
+            "var": "Tokens"
+          }
+        }
+      ]
+    },
+    "UpgradeArgs": {
+      "record": [
+        {
+          "id": "maximum_number_of_accounts",
+          "ty": {
+            "opt": "nat64"
+          }
+        },
+        {
+          "id": "icrc1_minting_account",
+          "ty": {
+            "opt": {
+              "var": "Account"
+            }
+          }
+        }
+      ]
+    }
+  }

@@ -1,6 +1,3 @@
-import { parseIdl, parseIdlPretty } from '../index.js'
-
-console.log(parseIdlPretty(`
   type Account = record { owner : principal; subaccount : opt vec nat8 };
   type AccountBalanceArgs = record { account : text };
   type ArchiveInfo = record { canister_id : principal };
@@ -188,4 +185,3 @@ console.log(parseIdlPretty(`
     transfer : (TransferArgs) -> (Result_1);
     transfer_fee : (record {}) -> (TransferFee) query;
   }
-`))

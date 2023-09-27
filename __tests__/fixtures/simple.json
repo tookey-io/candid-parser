@@ -1,0 +1,38 @@
+{
+  "Service": {
+    "service": [
+      [
+        "bar",
+        {
+          "func": {
+            "modes": [
+              {
+                "kind": "query"
+              }
+            ],
+            "args": [],
+            "rets": [
+              "text"
+            ]
+          }
+        }
+      ],
+      [
+        "foo",
+        {
+          "func": {
+            "modes": [
+              {
+                "kind": "query"
+              }
+            ],
+            "args": [],
+            "rets": [
+              "nat"
+            ]
+          }
+        }
+      ]
+    ]
+  }
+}

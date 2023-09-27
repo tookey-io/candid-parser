@@ -30,9 +30,10 @@
     "build": "napi build --platform --release",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "node example/first.mjs > example/first.json",
+    "test": "ava",
     "universal": "napi universal",
-    "version": "napi version"
+    "version": "napi version",
+    "start": "node example/output.mjs"
   },
   "packageManager": "yarn@3.6.3"
 }

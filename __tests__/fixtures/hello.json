@@ -1,0 +1,24 @@
+{
+  "Service": {
+    "service": [
+      [
+        "greet",
+        {
+          "func": {
+            "modes": [
+              {
+                "kind": "query"
+              }
+            ],
+            "args": [
+              "text"
+            ],
+            "rets": [
+              "text"
+            ]
+          }
+        }
+      ]
+    ]
+  }
+}

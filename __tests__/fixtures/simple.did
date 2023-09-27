@@ -1,0 +1,4 @@
+service : {
+  foo: () -> (nat) query;
+  bar: () -> (text) query;
+}
